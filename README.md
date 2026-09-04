@@ -1,69 +1,69 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:2E86AB,100:A23B72&height=200&section=header&text=Gestor%20de%20Avalia%C3%A7%C3%B5es&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Sistema%20de%20gest%C3%A3o%20de%20tarefas%2C%20grupos%20e%20pautas&descAlignY=55&descSize=16" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:2E86AB,100:A23B72&height=200&section=header&text=Grade%20Manager&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Task%2C%20group%2C%20and%20grade%20management%20system&descAlignY=55&descSize=16" width="100%"/>
 
 <div align="center">
 
 ![.NET](https://img.shields.io/badge/.NET-9.0-512BD4?logo=dotnet&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-WPF-239120?logo=csharp&logoColor=white)
-![MVVM](https://img.shields.io/badge/Padrão-MVVM-blue)
+![MVVM](https://img.shields.io/badge/Pattern-MVVM-2E86AB)
 
 </div>
 
-## Sobre o Projeto
+## About the Project
 
-Aplicação desktop desenvolvida em **WPF (.NET 9.0)** para a unidade curricular de **Laboratório de Planeamento e Desenvolvimento de Software**, do curso de **Licenciatura em Engenharia Informática** (UTAD, 2024/2025).
+Desktop application developed in **WPF (.NET 9.0)** for the **Software Planning and Development Lab** course, part of the **Bachelor's Degree in Computer Engineering** (UTAD, 2024/2025).
 
-A aplicação permite a um professor gerir o processo de avaliação de uma turma: registo de alunos, organização em grupos de trabalho, definição de tarefas de avaliação com respetiva ponderação, lançamento de classificações e consulta da pauta final, incluindo visualização gráfica dos resultados.
-
----
-
-## Funcionalidades
-
-- **Gestão de Perfil** — edição do nome, email e fotografia do utilizador (professor)
-- **Gestão de Alunos (CRUD)** — número, nome e email
-- **Importação de Alunos** a partir de ficheiro `.csv` ou `.xlsx`
-- **Gestão de Tarefas de Avaliação (CRUD)** — título, descrição, datas de início/término e ponderação
-- **Gestão de Grupos (CRUD)** — associação de alunos a grupos de trabalho
-- **Lançamento de Resultados** por grupo (com possibilidade de exceções por aluno)
-- **Consulta de Pauta** em formato de matriz, com a nota final calculada por aluno
-- **Histograma** da distribuição de notas da turma
+The application allows a professor to manage a class's evaluation process: student registration, organization into work groups, definition of evaluation tasks with their respective weights, grade entry, and consultation of the final gradebook, including graphical visualization of the results.
 
 ---
 
-## Tecnologias Utilizadas
+## Features
 
-| Tecnologia | Descrição |
+- **Profile Management** — editing the user's (professor's) name, email, and photo
+- **Student Management (CRUD)** — number, name, and email
+- **Student Import** from a `.csv` or `.xlsx` file
+- **Evaluation Task Management (CRUD)** — title, description, start/end dates, and weight
+- **Group Management (CRUD)** — assigning students to work groups
+- **Grade Entry** per group (with the possibility of per-student exceptions)
+- **Gradebook View** in matrix format, with the final grade calculated per student
+- **Histogram** of the class's grade distribution
+
+---
+
+## Technologies Used
+
+| Technology | Description |
 |---|---|
-| **C#** | Linguagem de programação |
-| **WPF (.NET 9.0)** | Framework de interface gráfica |
-| **MVVM** | Padrão arquitetural (Model-View-ViewModel) |
-| **XML / JSON** | Persistência de dados local |
-| **Visual Studio 2022** | IDE de desenvolvimento |
+| **C#** | Programming language |
+| **WPF (.NET 9.0)** | GUI framework |
+| **MVVM** | Architectural pattern (Model-View-ViewModel) |
+| **XML / JSON** | Local data persistence |
+| **Visual Studio 2022** | Development IDE |
 
 ---
 
-## Arquitetura
+## Architecture
 
-A aplicação segue o padrão **MVVM**, separando claramente:
+The application follows the **MVVM** pattern, clearly separating:
 
-- **Model** — entidades de domínio (`Utilizador`, `Turma`, `TurmaAtual`, `Aluno`, `Grupo`, `Tarefa`, `LinhaPauta`)
-- **View** — interfaces XAML
-- **ViewModel** — lógica de apresentação e ligação (binding) entre Model e View
+- **Model** — domain entities (`User`, `Class`, `CurrentClass`, `Student`, `Group`, `Task`, `GradebookRow`)
+- **View** — XAML interfaces
+- **ViewModel** — presentation logic and binding between Model and View
 
-Os dados são persistidos em ficheiros XML/JSON, armazenados na pasta pessoal do perfil do utilizador Windows.
+Data is persisted in XML/JSON files, stored in the Windows user's personal profile folder.
 
 ---
 
-## Como Executar
+## How to Run
 
-1. Clonar o repositório
+1. Clone the repository
    ```bash
    git clone https://github.com/Tiago095/GestaoTurmas.git
    ```
-2. Abrir a solução `.sln` no **Visual Studio 2022**
-3. Restaurar os pacotes NuGet (automático ao abrir)
-4. Definir o projeto WPF como *Startup Project*
-5. Executar (`F5`)
+2. Open the `.sln` solution in **Visual Studio 2022**
+3. Restore the NuGet packages (automatic on open)
+4. Set the WPF project as the *Startup Project*
+5. Run (`F5`)
 
-**Pré-requisitos:** .NET 9.0 SDK e Visual Studio 2022
+**Prerequisites:** .NET 9.0 SDK and Visual Studio 2022
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:2E86AB,100:A23B72&height=100&section=footer&animation=fadeIn&reversal=true" width="100%"/>
