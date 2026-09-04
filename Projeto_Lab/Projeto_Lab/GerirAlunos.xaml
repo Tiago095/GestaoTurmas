@@ -1,0 +1,174 @@
+﻿<UserControl x:Class="Projeto_Lab.GerirAlunos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Loaded="UserControl_Loaded"
+             Height="Auto" Width="Auto">
+
+    <Grid Background="#2B2D31" Margin="20,35,20,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" Margin="0,0,0,10">
+            <TextBlock Text="Gerir Alunos"
+                       Foreground="White"
+                       FontSize="22"
+                       FontWeight="Bold"/>
+            <TextBlock Text="Adicione, edite ou remova alunos da turma."
+                       Foreground="#AAAAAA"
+                       FontSize="12"
+                       Margin="0,4,0,6"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="180"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.ColumnSpan="2" Background="#23272A" CornerRadius="15" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Background="#FF1E1F22" CornerRadius="10" Padding="10" Margin="0,0,190,10" Grid.Row="0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="txtPesquisa"
+                                     Width="200"
+                                     Height="28"
+                                     FontSize="13"
+                                     Padding="5"
+                                     VerticalContentAlignment="Center"
+                                     BorderThickness="0"
+                                     Background="#FF2C2F33"
+                                     Foreground="White"
+                                     TextChanged="txtPesquisa_TextChanged"/>
+
+                            <ComboBox x:Name="cbFiltro"
+                                      Width="120"
+                                      Height="28"
+                                      SelectedIndex="0"
+                                      FontSize="13"
+                                      Padding="4"
+                                      VerticalContentAlignment="Center"
+                                      Background="#1E1F22"
+                                      Foreground="Black"
+                                      BorderThickness="0"
+                                      Margin="10,0,0,0"
+                                      BorderBrush="#FF191616">
+                                <ComboBoxItem Content="Número"/>
+                                <ComboBoxItem Content="Nome"/>
+                            </ComboBox>
+
+                            <Button Content="Limpar"
+                                    Height="28"
+                                    FontSize="13"
+                                    Padding="10,0"
+                                    Background="#7289DA"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    Margin="10,0,0,0"
+                                    Click="btnLimpar_Click"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="180"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ListView x:Name="lv_alunos"
+                                  Grid.Column="0"
+                                  Margin="0,0,10,0"
+                                  Background="#2C2F33"
+                                  Foreground="White"
+                                  BorderThickness="0"
+                                  FontSize="14"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <ListView.Resources>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="Background" Value="#2B2D31"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="Padding" Value="10,5"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                </Style>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Background" Value="#1E1F22"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#7289DA"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#2F3136"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Número" Width="80" DisplayMemberBinding="{Binding Numero}"/>
+                                    <GridViewColumn Header="Nome" Width="350" DisplayMemberBinding="{Binding Nome}"/>
+                                    <GridViewColumn Header="Email" Width="200" DisplayMemberBinding="{Binding Email}"/>
+                                    <GridViewColumn Header="Grupo" Width="90" DisplayMemberBinding="{Binding Id_Grupo}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <StackPanel Grid.Column="1" VerticalAlignment="Top">
+                            <Border Background="#7289DA" CornerRadius="10" Height="40" Margin="0,0,0,10">
+                                <Button x:Name="btn_Adicionar"
+                                        Content="Adicionar Aluno"
+                                        Background="Transparent"
+                                        Foreground="White"
+                                        FontWeight="SemiBold"
+                                        FontSize="12"
+                                        BorderThickness="0"
+                                        Cursor="Hand"
+                                        VerticalContentAlignment="Center"
+                                        Click="btn_Adicionar_Click"/>
+                            </Border>
+
+                            <Border Background="#7289DA" CornerRadius="10" Height="40" Margin="0,0,0,10">
+                                <Button x:Name="btn_editar"
+                                        Content="Editar Aluno"
+                                        Background="Transparent"
+                                        Foreground="White"
+                                        FontWeight="SemiBold"
+                                        FontSize="12"
+                                        BorderThickness="0"
+                                        Cursor="Hand"
+                                        VerticalContentAlignment="Center"
+                                        Click="btn_editar_Click"/>
+                            </Border>
+
+                            <Border Background="#7289DA" CornerRadius="10" Height="40">
+                                <Button x:Name="btn_remove"
+                                        Content="Remover Aluno"
+                                        Background="Transparent"
+                                        Foreground="White"
+                                        FontWeight="SemiBold"
+                                        FontSize="12"
+                                        BorderThickness="0"
+                                        Cursor="Hand"
+                                        VerticalContentAlignment="Center"
+                                        Click="btn_remove_Click"/>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <ContentControl x:Name="AlunosContent" Grid.ColumnSpan="2" Margin="0,56,0,0"/>
+        </Grid>
+    </Grid>
+</UserControl>

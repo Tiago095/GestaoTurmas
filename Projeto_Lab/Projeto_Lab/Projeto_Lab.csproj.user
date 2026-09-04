@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="AddAluno.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AddGrupo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AddTarefa.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CriarTurmas.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditAluno.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditGrupo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditTarefa.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="GerirAlunos.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="GerirGrupos.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="GerirTarefas.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

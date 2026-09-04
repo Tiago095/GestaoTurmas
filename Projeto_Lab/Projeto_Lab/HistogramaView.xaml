@@ -1,0 +1,149 @@
+<UserControl x:Class="Projeto_Lab.HistogramaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="#2B2D31">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Titulo e ComboBox na mesma linha -->
+        <Grid Grid.Row="0" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="Histograma de Notas" 
+                       FontSize="24" FontWeight="Bold" 
+                       Foreground="White" 
+                       VerticalAlignment="Center"/>
+
+            <!-- ComboBox no lado direito -->
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Visualizar:" 
+                           Foreground="White" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,0"/>
+                <ComboBox x:Name="TarefaComboBox" 
+                          Width="200" 
+                          SelectionChanged="TarefaComboBox_SelectionChanged"
+                          Background="#1E1F22"
+                          Foreground="Black"
+                          BorderBrush="#7289DA">
+                    <ComboBox.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#1E1F22"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#7289DA"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#1E1F22"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.WindowTextBrushKey}" Color="White"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="White"/>
+                    </ComboBox.Resources>
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="#1E1F22"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#7289DA"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#7289DA"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+
+        <!-- Area do histograma (aumentada) -->
+        <Border Grid.Row="1" Background="#1E1F22" CornerRadius="10" Padding="20" Margin="0,0,0,20" Height="400">
+            <Canvas x:Name="HistogramaCanvas" Background="Transparent"/>
+        </Border>
+
+        <!-- Statistics Section com botões -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <!-- Botões -->
+                <ColumnDefinition Width="*"/>
+                <!-- Espaço -->
+                <ColumnDefinition Width="Auto"/>
+                <!-- Estatísticas -->
+            </Grid.ColumnDefinitions>
+
+            <!-- Botões à esquerda -->
+            <StackPanel Grid.Column="0" Width="180">
+                <Border Background="#7289DA" CornerRadius="10" Height="40" Margin="0,0,0,10">
+                    <Button Content="Apresentar Resultados"
+                            Background="Transparent"
+                            Foreground="White"
+                            FontWeight="SemiBold"
+                            FontSize="12"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Click="VoltarButton_Click"/>
+                </Border>
+                <Border Background="#7289DA" CornerRadius="10" Height="40">
+                    <Button Content="Apresentar Histograma"
+                            Background="Transparent"
+                            Foreground="White"
+                            FontWeight="SemiBold"
+                            FontSize="12"
+                            BorderThickness="0"
+                            Cursor="Hand"/>
+                </Border>
+            </StackPanel>
+
+            <!-- Estatísticas à direita -->
+            <Border Grid.Column="2" CornerRadius="20" Background="#23272A" Padding="20">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <!-- Média -->
+                    <Border Width="120" Margin="0,0,15,0">
+                        <StackPanel>
+                            <TextBlock Text="Média" Foreground="White" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="txtMedia" Foreground="#FF7289DA" FontSize="24" FontWeight="Bold" 
+                                     HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Mínimo -->
+                    <Border Width="120" Margin="0,0,15,0">
+                        <StackPanel>
+                            <TextBlock Text="Mínimo" Foreground="White" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="txtMinimo" Foreground="#FF7289DA" FontSize="24" FontWeight="Bold" 
+                                     HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Máximo -->
+                    <Border Width="120" Margin="0,0,15,0">
+                        <StackPanel>
+                            <TextBlock Text="Máximo" Foreground="White" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="txtMaximo" Foreground="#FF7289DA" FontSize="24" FontWeight="Bold" 
+                                     HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Total de Alunos -->
+                    <Border Width="120">
+                        <StackPanel>
+                            <TextBlock Text="Total de Alunos" Foreground="White" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="txtTotal" Foreground="#FF7289DA" FontSize="24" FontWeight="Bold" 
+                                     HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

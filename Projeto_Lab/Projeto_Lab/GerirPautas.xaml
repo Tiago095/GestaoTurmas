@@ -1,0 +1,174 @@
+<UserControl x:Class="Projeto_Lab.GerirPautas"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Projeto_Lab"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="#2B2D31"
+             Loaded="UserControl_Loaded">
+    <Grid Margin="40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Titulo e Subtitulo -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="Pauta" 
+                       FontSize="24" FontWeight="Bold" 
+                       Foreground="White" 
+                       Margin="0,0,0,5"/>
+            <TextBlock Text="Resultados e avaliações dos alunos"
+                       FontSize="16" FontWeight="Normal"
+                       Foreground="#B3B3B3"
+                       Margin="0,0,0,0"/>
+        </StackPanel>
+
+        <!-- Grid para a visualização da pauta -->
+        <Grid x:Name="PautaGrid" Grid.Row="1" MaxHeight="500">
+            <Border Background="#FF23272A" CornerRadius="10" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Filtro -->
+                    <Border Background="#FF1E1F22" CornerRadius="10" Padding="10" Margin="0,0,0,10" Grid.Row="0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="txtPesquisa"
+                                     Width="200"
+                                     Height="28"
+                                     FontSize="13"
+                                     Padding="5"
+                                     VerticalContentAlignment="Center"
+                                     BorderThickness="0"
+                                     Background="#FF2C2F33"
+                                     Foreground="White"
+                                     TextChanged="txtPesquisa_TextChanged"/>
+
+                            <ComboBox x:Name="cbFiltro"
+                                      Width="120"
+                                      Height="28"
+                                      SelectedIndex="0"
+                                      FontSize="13"
+                                      Padding="4"
+                                      VerticalContentAlignment="Center"
+                                      Background="#1E1F22"
+                                      Foreground="Black"
+                                      BorderThickness="0"
+                                      Margin="10,0,0,0"
+                                      BorderBrush="#FF191616">
+                                <ComboBoxItem Content="Número"/>
+                                <ComboBoxItem Content="Nome"/>
+                            </ComboBox>
+
+                            <Button Content="Limpar"
+                                    Height="28"
+                                    FontSize="13"
+                                    Padding="10,0"
+                                    Background="#7289DA"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    Margin="10,0,0,0"
+                                    Click="btnLimpar_Click"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- ListView -->
+                    <ListView x:Name="PautaListView" Grid.Row="1" Background="#23272A" BorderThickness="0" Foreground="White" FontSize="14">
+                        <ListView.Resources>
+                            <!-- Estilo para os cabeçalhos das colunas -->
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="Background" Value="#2B2D31"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Padding" Value="10,5"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                            </Style>
+                            <!-- Estilo para os itens da lista -->
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Background" Value="#1E1F22"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Padding" Value="5"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#7289DA"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#2F3136"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.Resources>
+                        <ListView.View>
+                            <GridView x:Name="PautaGridView"/>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Botões -->
+        <Grid Grid.Row="2" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Width="180">
+                <Border Background="#7289DA" CornerRadius="10" Height="40" Margin="0,0,0,10">
+                    <Button Content="Apresentar Resultados"
+                            Background="Transparent"
+                            Foreground="White"
+                            FontWeight="SemiBold"
+                            FontSize="12"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Click="ApresentarResultados_Click"/>
+                </Border>
+                <Border Background="#7289DA" CornerRadius="10" Height="40">
+                    <Button Content="Apresentar Histograma"
+                            Background="Transparent"
+                            Foreground="White"
+                            FontWeight="SemiBold"
+                            FontSize="12"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Click="ApresentarHistograma_Click"/>
+                </Border>
+            </StackPanel>
+
+            <Border Grid.Column="2" CornerRadius="20" Background="#23272A" Padding="20">
+                <Grid Width="400">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Taxa de Aprovação -->
+                    <StackPanel Grid.Column="0" Margin="0,0,20,0">
+                        <TextBlock Text="Taxa de Aprovação" Foreground="White" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="txtTaxaAprovacao" Foreground="#FF7289DA" FontSize="24" FontWeight="Bold" 
+                                 HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <!-- Média Total -->
+                    <StackPanel Grid.Column="1" Margin="20,0,0,0">
+                        <TextBlock Text="Média Total" Foreground="White" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="txtMediaTotal" Foreground="#FF7289DA" FontSize="24" FontWeight="Bold" 
+                                 HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- ContentControl-->
+        <ContentControl x:Name="HistogramaContentControl" Grid.Row="0" Grid.RowSpan="3" Visibility="Collapsed" />
+    </Grid>
+</UserControl>

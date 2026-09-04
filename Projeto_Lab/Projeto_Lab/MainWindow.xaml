@@ -1,0 +1,145 @@
+﻿<Window x:Class="Projeto_Lab.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projeto_Lab"
+        mc:Ignorable="d"
+        Title="Gestão Escolar"
+        Height="800"
+        Width="1300"
+        Background="#2B2D31"
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Painel Lateral -->
+        <Grid Grid.Column="0" Background="#FF17181A">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Botões principais -->
+            <StackPanel Margin="10,20,10,0">
+                <Button x:Name="btn_home" Content="  Gestão Escolar" Margin="0,0,0,15" Height="50" BorderBrush="#FF17181A" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Left" Click="btn_home_Click" Background="#FF17181A" Foreground="White"/>
+                <Separator Height="11" Width="236"/>
+                <Button x:Name="btn_turma" Content="  Criar Turmas" Margin="0,5" Height="50" Background="#FF17181A" BorderBrush="#FF17181A" Foreground="White" FontSize="16" HorizontalContentAlignment="Left" Click="btn_turma_Click">
+                </Button>
+                <Button x:Name="btn_alunos" Content="  Alunos" Margin="0,5" Height="50" Background="#FF17181A" BorderBrush="#FF17181A" Foreground="White" FontSize="16" HorizontalContentAlignment="Left" Click="btn_alunos_Click"/>
+                <Button x:Name="btn_grupos" Content="  Grupos" Margin="0,5" Height="50" Background="#FF17181A" BorderBrush="#FF17181A" Foreground="White" FontSize="16" HorizontalContentAlignment="Left" Click="btn_grupos_Click"/>
+                <Button x:Name="btn_tarefas" Content="  Tarefas" Margin="0,5" Height="50" Background="#FF17181A" BorderBrush="#FF17181A" Foreground="White" FontSize="16" HorizontalContentAlignment="Left" Click="btn_tarefas_Click"/>
+                <Button x:Name="btn_pautas" Content="  Pautas" Margin="0,5" Height="50" Background="#FF17181A" BorderBrush="#FF17181A" Foreground="White" FontSize="16" HorizontalContentAlignment="Left" Click="btn_pautas_Click"/>
+                <Button x:Name="btn_notas" Content="  Adicionar Notas" Height="50" Background="#FF17181A" BorderBrush="#FF17181A" Foreground="White" FontSize="16" VerticalAlignment="Top" HorizontalContentAlignment="Left" Click="btn_notas_Click"/>
+            </StackPanel>
+
+            <!-- Área extra com botões acima do perfil -->
+            <StackPanel Grid.Row="1" Margin="10" Background="Transparent">
+                <!-- Botões fora do quadrado de perfil -->
+                <Button x:Name="ButtonDef" Content="  Definições" Background="#FF17181A" Foreground="White" FontWeight="SemiBold"
+                        BorderThickness="0" FontSize="14" Height="40" Margin="0,0,0,5" Cursor="Hand" HorizontalContentAlignment="Left" Click="ButtonDef_Click"/>
+                <Button x:Name="ButtonSair" Content="  Sair" Background="#FF17181A" Foreground="White" FontWeight="SemiBold"
+                        BorderThickness="0" FontSize="14" Height="40" Margin="0,0,0,10" Cursor="Hand" VerticalAlignment="Top" HorizontalContentAlignment="Left" Click="ButtonSair_Click"/>
+                <Separator Margin="0,0,0,10"/>
+
+                <!-- Quadrado com info de perfil -->
+                <Border Background="#2B2D31" CornerRadius="10" Padding="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Foto ou iniciais -->
+                        <Grid Width="40" Height="40" Margin="0,0,10,0">
+                            <Image x:Name="imagem_main" Stretch="UniformToFill" Visibility="Collapsed">
+                                <Image.Clip>
+                                    <EllipseGeometry Center="20,20" RadiusX="20" RadiusY="20"/>
+                                </Image.Clip>
+                            </Image>
+                            <TextBlock x:Name="ProfileInitials"
+                                       Text="T"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       Background="#444"
+                                       TextAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Width="40" Height="40"
+                                       Padding="0,8,0,0"
+                                       Visibility="Visible">
+                                <TextBlock.Clip>
+                                    <EllipseGeometry Center="20,20" RadiusX="20" RadiusY="20"/>
+                                </TextBlock.Clip>
+                            </TextBlock>
+                        </Grid>
+
+                        <!-- Nome e estado -->
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock x:Name="tb_nome_main" Text="T" Foreground="White" FontWeight="Bold" FontSize="14"/>
+                            <TextBlock Text="Online" Foreground="#43B581" FontSize="12"/>
+                        </StackPanel>
+
+                        <!-- Botão de perfil à direita -->
+                        <Button x:Name="btn_perfil" Grid.Column="2" Content="👤" Background="Transparent" Foreground="White"
+                                FontWeight="SemiBold" BorderThickness="0" Cursor="Hand" FontSize="20" Width="40" Height="40"
+                                HorizontalAlignment="Right" Click="btn_perfil_Click"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid>
+                <Border Background="#1E1F22"
+                CornerRadius="10"
+                Padding="10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0,20,20,0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <ComboBox x:Name="cb_turmas"
+                          Width="200"
+                          Height="30"
+                          Margin="0,0,10,0"
+                          Background="#1E1F22"
+                          Foreground="Black"
+                          BorderBrush="#FF1E1F22"/>
+                        <Button x:Name="btn_refresh"
+                        Width="30"
+                        Height="30"
+                        Content="⟳"
+                        FontSize="20"
+                        Foreground="White"
+                        Background="#FF1E1F22"
+                        BorderBrush="#FF57F287"
+                        BorderThickness="0"
+                        Click="btn_refresh_Click"
+                        Padding="0,-4,0,0">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF3AB870"/>
+                                            <Setter Property="BorderBrush" Value="#FF3AB870"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+                <ContentControl x:Name="MainContent" Margin="20,70,20,20" Background="Black"/>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>
